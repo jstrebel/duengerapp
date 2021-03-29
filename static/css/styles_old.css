@@ -1,0 +1,188 @@
+#title{
+  position: absolute;
+  right: 5%;
+  left: 5%;
+}
+
+#logo {
+  position: absolute;
+  top: 0%:
+  left: 0%;
+}
+
+#import {
+  position: absolute;
+  top: 0%;
+  height: 100%;
+  left: calc((100vw - 100vh) / 2);
+  width: 100vh;
+  background-color: white;
+  border-style: solid;
+  border-color: black;
+  z-index: 10000;
+}
+
+.disabled{
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/*.dropzone {
+  text-align: center;
+  background: #EEE;
+  border: 0.2em solid #000;
+  padding: 3em;
+}*/
+
+#txt_title {
+  position: absolute;
+  top: 0%;
+  right: 0%;
+}
+
+#news{
+  position: absolute;
+  right: 5%;
+  top: 15%;
+}
+
+#menue{
+  position: absolute;
+  left: 5%;
+  top: 15%;
+}
+
+#new_fields{
+  position: relative;
+  left: 0%;
+  display: inline;
+}
+
+#new_plan{
+  position: relative;
+  left: 0%;
+}
+
+#save_plan{
+  position: relative;
+  left: 0%;
+}
+
+/*Ende Styling start.html*/
+
+#input{
+  position: absolute;
+  left: 5%;
+  top: 15%;
+  bottom: 50%;
+}
+
+#place{
+  position: relative;
+  left: 0%;
+}
+
+#fieldname{
+  position: relative;
+  left: 0%;
+}
+
+#coordinates{
+  position: relative;
+  left: 0%;
+}
+
+#legend{
+  position: relative;
+  left: 0%;
+  color: red;
+}
+
+#contour{
+  position: relative;
+  left: 0%;
+}
+
+#search{
+  position: relative;
+  left: 0%;
+}
+
+#caching{
+  position: relative;
+  left: 0%;
+}
+
+#next{
+  position: relative;
+  left: 0%;
+}
+
+.button {
+  font: bold 11px Arial;
+  text-decoration: none;
+  background-color: #EEEEEE;
+  color: #333333;
+  padding: 2px 6px 2px 6px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
+  cursor: pointer;
+}
+
+.ip_txt{
+  margin: 0px;
+}
+
+#map{
+  position: absolute;
+  right: 5%;
+  top: 15%;
+  /*width: 45%;
+  height: 45vw;*/
+  height: 500px;
+  width: 500px;
+}
+
+#customer{
+  position: relative;
+  left: 0%;
+}
+
+.invisible{
+  display: none;
+}
+
+/*Ende Styling fields.html*/
+
+#date{
+  position: relative;
+  left: 0%;
+}
+
+#type{
+  position: relative;
+  left: 0%;
+}
+
+#numbers{
+  position: relative;
+  left: 0%;
+}
+
+#weight{
+  position: relative;
+  left: 0%;
+}
+
+#description{
+  position: relative;
+  left: 0%;
+}
+
+#output{
+  position: absolute;
+  left: 5%;
+  top: 55%;
+}

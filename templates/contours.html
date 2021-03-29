@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dünger App</title>
+  <link rel="stylesheet" href="../static/css/styles.css">
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+  integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+	crossorigin=""/>
+	<!--<link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@2.3.2/dist/esri-leaflet-geocoder.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.css"/>
+
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+	integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+	crossorigin=""></script>
+  <script src="https://unpkg.com/leaflet-tilelayer-swiss@2.1.0/dist/Leaflet.TileLayer.Swiss.umd.js" crossorigin
+  integrity="sha384-ylX6gm5jl451O0/PN7zKJp+CAJwSvVRu+GmV/Vep3h64jtcCmBs1hLH0LGB+oORb"></script>
+	<!--<script src="https://unpkg.com/esri-leaflet@2.3.2/dist/esri-leaflet.js"> </script>
+  <script src="https://unpkg.com/esri-leaflet-geocoder@2.3.2/dist/esri-leaflet-geocoder.js"></script>
+  <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.js"></script>
+  <script src="../static/js/jquery-2.1.4.min.js"></script>
+  <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
+</head>
+
+<body>
+
+  <div id='template1_1' class={{none_import_class}}>
+    <div id='title'>
+      <img id='logo' src='../static/img/basf_logo.jpg'></img>
+      <h1 id='txt_title'>Eingabe der Feldkonturen</h1>
+    </div>
+
+    <div id='menue'>
+      <div id='customer'>
+        <p id='txt_customer' class='ip_txt'>Kunde:</p>
+        <input type='text' id='ip_customer'></input>
+      </div>
+
+      <div id='fieldname'>
+        <p id='txt_fieldname' class='ip_txt'>Feldname:</p>
+        <input type='text' id='ip_fieldname' onchange='change_value_fieldname()'></input>
+      </div>
+
+      <div id='caching'>
+        <a id='cachingbutton' class='button disabled' onclick='caching()'>Feldkonturen speichern</a>
+      </div>
+
+      <div id='next'>
+        <button id='nextbutton' class='button disabled' onclick='next()'>Düngeplan erstellen</button>
+      </div>
+    </div>
+  </div>
+
+  <div id='template1_2' class={{import_class}}>
+    <div id='importmenue'>
+      <h1>Zu importierendes File auswählen</h1>
+      <!--<div class="dropzone">Drop!</div>-->
+      <input id='fields_ip' type='file'></input>
+      <button id='importbutton' class='button' onclick='import_fields()'>weiter</button>
+    </div>
+  </div>
+
+  <div id='map' class={{map_class}}>
+  </div>
+
+  <div id='template2' class='invisible'>
+    <div id='title'>
+      <img id='logo' src='../static/img/basf_logo.jpg'></img>
+      <h1 id='txt_title'>Eingabe der Feldkonturen</h1>
+    </div>
+
+    <div id='inputmenue'>
+      <div id='fieldname'>
+        <p id='txt_fieldname' class='ip_txt'>Feldname:*</p>
+        <input type='text' id='ip_fieldname2'></input>
+      </div>
+
+      <div id='date'>
+        <p id='txt_date' class='ip_txt'>Datum:*</p>
+        <input type='date' id='ip_date'></input>
+      </div>
+
+      <div id='type'>
+        <p id='txt_type' class='ip_txt'>Düngertyp:</p>
+        <input type='text' id='ip_type'></input>
+      </div>
+
+      <div id='numbers'>
+        <p id='txt_numbers' class='ip_txt'>Anzahl Düngerstufen (1-5):*</p>
+        <input type='number' id='ip_numbers' min="1" max="5" step='1' value='1' onchange='change_zone()'></input>
+      </div>
+
+      <div id='weight'>
+        <p id='txt_weight' class='ip_txt'>Menge kg/a:*</p>
+        <input type='number' id='ip_weight' step='0.01' value='0' onchange='change_weight()'></input>
+      </div>
+
+      <div id='discription'>
+        <p id='txt_discription' class='ip_txt'>Bezeichnung Düngergabe:</p>
+        <input type='text' id='ip_discription'></input>
+      </div>
+
+      <p id='legend' class='ip_txt'>* Eingabe zwingend</p>
+    </div>
+
+    <div id='outputmenue'>
+      <div id='size'>
+        <p id='txt_size' class='ip_txt'>Feldgrösse [ha]</p>
+        <input id='op_size' type='text' value='0' readonly></input>
+      </div>
+
+      <table id='zones'>
+        <tr>
+          <th></th>
+          <th>%</th>
+          <th>ha</th>
+          <th>kg</th>
+        </tr>
+        <tr class='zone'>
+          <td>Zone 1</td>
+          <td><input id='zone_perc_1' type='number' min='0' max='100' value='0' onchange='change_weight()'></input></td>
+          <td><input id='zone_ha_1' type='number' value='0' readonly></input></td>
+          <td><input id='zone_kg_1' type='number' value='0' readonly></input></td>
+        </tr>
+        <tr class='zone'>
+          <td>Rest</td>
+          <td><input id='zone_perc_6' type='number' min='0' max='100' value='0' onchange='change_weight()'></input></td>
+          <td><input id='zone_ha_6' type='number' value='0' readonly></input></td>
+          <td><input id='zone_kg_6' type='number' value='0' readonly></input></td>
+        </tr>
+        <tr class='zone'>
+          <td>Total</td>
+          <td><input id='zone_perc_7' type='number' min='0' max='100' value='' readonly></input></td>
+          <td><input id='zone_ha_7' type='number' value='0' readonly></input></td>
+          <td><input id='zone_kg_7' type='number' value='0' readonly></input></td>
+        </tr>
+        <!---<tr class='sum_zones'>
+          <td>Total</td>
+          <td></td>
+          <td><input id='zone_ha_sum' type='number' value='0' readonly></input></td>
+          <td><input id='zone_kg_sum' type='number' value='0' readonly></input></td>
+        </tr>--->
+      </table>
+
+      <div id='save'>
+        <a id='savebutton' class='button' onclick='save()'>Feldkonturen speichern</a>
+      </div>
+    </div>
+  </div>
+
+  <!--<script src="../static/js/jquery-2.1.4.min.js"></script>-->
+	<script type="text/javascript" src="../static/js/viewer_incl_zh.js"></script>
+  <script type="text/javascript" src="../static/js/contours.js"></script>
+	<script type="text/javascript">
+		createSwisstopoMap('{{coords}}');
+    AddDrawLayer_fields();
+    //createMap1();
+	</script>
+</body>
+</html>

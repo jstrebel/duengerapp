@@ -1,0 +1,109 @@
+p {
+  margin: 0;
+}
+
+input[readonly] {
+      /*border:0px;*/
+      background-color: lightgrey;
+}
+
+#title {
+  position: absolute;
+  right: 5%;
+  left: 5%;
+  top: 0%;
+  height: 5%;
+}
+
+#logo {
+  position: absolute;
+  left: 0%;
+  top: 0%;
+  height: 100%
+}
+
+#txt_title {
+  position: absolute;
+  right: 0%;
+  top: 0%;
+  height: 100%;
+  margin: 0;
+}
+
+#menue {
+  position: absolute;
+  left: 5%;
+  width: 35%;
+  top: 10%;
+  bottom: 0%
+}
+
+#legend {
+  color: red;
+}
+
+#inputmenue {
+  position: absolute;
+  left: 5%;
+  width: 45%;
+  top: 10%;
+  height: 45%
+}
+
+#outputmenue {
+  position: absolute;
+  left: 5%;
+  width: 35%;
+  top: 55%;
+  height: 45%
+}
+
+#importmenue {
+  position: absolute;
+  top: 0%;
+  height: 100%;
+  left: calc((100vw - 100vh) / 2);
+  width: 100vh;
+  background-color: white;
+  border-style: solid;
+  border-color: black;
+  z-index: 10000;
+}
+
+#news {
+  position: absolute;
+  right: 5%;
+  width: 45%;
+  top: 10%;
+  bottom: 0%
+}
+
+#map{
+  position: absolute;
+  right: 5%;
+  top: 15%;
+  width: 55%;
+  height: 45vw;
+}
+
+.button {
+  font: bold 20px Arial;
+  text-decoration: none;
+  background-color: #CDDC39;
+  color: #440BDC;
+  padding: 2px 12x 2px 10px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
+  cursor: pointer;
+}
+
+.disabled{
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.invisible{
+  display: none;
+}

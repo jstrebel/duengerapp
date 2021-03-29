@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dünger App</title>
+  <link rel="stylesheet" href="../static/css/styles.css">
+</head>
+
+<body>
+  <div id='title'>
+    <img id='logo' src='../static/img/basf_logo.jpg'></img>
+    <h1 id='txt_title'>Eingabe der Feldkonturen</h1>
+  </div>
+
+  <div id='input'>
+    <div id='fieldname'>
+      <p id='txt_fieldname' class='ip_txt'>Feldname:*</p>
+      <input type='text' id='ip_fieldname'></input>
+    </div>
+     <br>
+
+    <div id='date'>
+      <p id='txt_date' class='ip_txt'>Datum:*</p>
+      <input type='date' id='ip_date'></input>
+    </div>
+     <br>
+    <div id='type'>
+      <p id='txt_type' class='ip_txt'>Düngertyp:</p>
+      <input type='text' id='ip_type'></input>
+    </div>
+     <br>
+
+    <div id='numbers'>
+      <p id='txt_numbers' class='ip_txt'>Anzahl Düngerstufen (1-5):*</p>
+      <input type='number' id='ip_numbers'></input>
+    </div>
+     <br>
+
+    <div id='weight'>
+      <p id='txt_weight' class='ip_txt'>Menge kg/a:*</p>
+      <input type='number' id='ip_weight'></input>
+    </div>
+     <br>
+
+    <div id='discription'>
+      <p id='txt_discription' class='ip_txt'>Bezeichnung Düngergabe:</p>
+      <input type='text' id='ip_discription'></input>
+    </div>
+     <br>
+
+    <p id='legend' class='ip_txt'>* Eingabe zwingend !!</p>
+  </div>
+   <br>
+
+  <div id='output'>
+    <div id='size'>
+      <p id='txt_size' class='ip_txt'>Feldgrösse:</p>
+      <input id='op_size' type='text'></input>
+    </div>
+     <br>
+
+    <table id='zones'>
+      <tr>
+        <th></th>
+        <th>%</th>
+        <th>ha</th>
+        <th>kg</th>
+      </tr>
+      <tr>
+        <td>Zone 1</td>
+        <td><input type='number'></input></td>
+        <td><input type='number'></input></td>
+        <td><input type='number'></input></td>
+      </tr>
+    </table>
+  </div>
+
+  <div id='map'>
+  </div>
+</body>
+</html>
